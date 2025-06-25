@@ -8,6 +8,7 @@ import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import androidx.savedstate.SavedStateRegistry
 import com.omiwrench.homes.repository.listing.model.Listing
 import kotlinx.serialization.Serializable
+import java.net.URL
 
 @Serializable
 data object Listings
@@ -27,12 +28,6 @@ fun ListingsRoute(
         state = rememberScreenState(uiState)
     )
 }
-
-internal data class ScreenState(
-    val listings: List<ListingItem>,
-    val isLoading: Boolean,
-    val isRefreshing: Boolean
-)
 
 @Composable
 private fun rememberScreenState(
@@ -68,6 +63,50 @@ internal fun Listing.asListingItem() = when(this) {
             numberOfRooms = numberOfRooms,
             daysOnMarket = daysOnMarket,
             isHighlighted = type == Listing.Property.Type.Highlighted
+        )
+    }
+}
+
+internal data class ScreenState(
+    val listings: List<ListingItem>,
+    val isLoading: Boolean,
+    val isRefreshing: Boolean
+) {
+    companion object {
+        fun preview() = ScreenState(
+            listings = listOf(
+                ListingItem.Property(
+                    id = "1",
+                    image = URL("https://upload.wikimedia.org/wikipedia/commons/8/8f/Arkitekt_Peder_Magnussen_hus_H%C3%B8nefoss_HDR.jpg"),
+                    streetAddress = "Vägvägen 123",
+                    generalLocation = "Vägholma, Stockholm",
+                    askingPrice = "5 000 000 kr",
+                    livingArea = 80,
+                    numberOfRooms = 5,
+                    daysOnMarket = 123,
+                    isHighlighted = false
+                ),
+                ListingItem.Property(
+                    id = "2",
+                    image = URL("https://upload.wikimedia.org/wikipedia/commons/8/8f/Arkitekt_Peder_Magnussen_hus_H%C3%B8nefoss_HDR.jpg"),
+                    streetAddress = "Vägvägen 1234",
+                    generalLocation = "Vägholma, Stockholm",
+                    askingPrice = "10 000 000 kr",
+                    livingArea = 160,
+                    numberOfRooms = 10,
+                    daysOnMarket = 1234,
+                    isHighlighted = true
+                ),
+                ListingItem.Area(
+                    id = "12345",
+                    image = URL("https://upload.wikimedia.org/wikipedia/commons/8/8f/Arkitekt_Peder_Magnussen_hus_H%C3%B8nefoss_HDR.jpg"),
+                    area = "Stockholm",
+                    rating = "5/5",
+                    averagePrice = "12 000 000 kr"
+                )
+            ),
+            isLoading = false,
+            isRefreshing = false
         )
     }
 }

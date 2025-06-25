@@ -16,4 +16,10 @@ class ListingRepository @Inject constructor(
             it.asListing()
         }
     }
+
+    suspend fun getListing(listingId: String): Result<Listing> = runCatching {
+        backend.getListings().items.firstOrNull {
+            it.id == listingId
+        }?.asListing() ?: error("No listing found for $listingId")
+    }
 }

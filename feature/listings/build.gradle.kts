@@ -8,4 +8,6 @@ android {
 
 dependencies {
     implementation(projects.repository.listing)
+
+    implementation(libs.coil)
 }
