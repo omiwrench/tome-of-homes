@@ -1,0 +1,23 @@
+{
+  "name": "tome-of-homes",
+  "version": "1.0.0",
+  "description": "",
+  "main": "mock-server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/omiwrench/tome-of-homes.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/omiwrench/tome-of-homes/issues"
+  },
+  "homepage": "https://github.com/omiwrench/tome-of-homes#readme",
+  "dependencies": {
+    "express": "^5.1.0"
+  }
+}

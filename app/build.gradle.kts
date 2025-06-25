@@ -34,6 +34,7 @@ android {
 
 dependencies {
     implementation(projects.library.ui)
+    implementation(projects.library.resources)
 
     implementation(projects.feature.listings)
 }

@@ -12,7 +12,7 @@ class ListingRepository @Inject constructor(
 ) {
 
     suspend fun fetchListings(): Result<List<Listing>> = runCatching {
-        backend.getListings().map {
+        backend.getListings().items.map {
             it.asListing()
         }
     }
