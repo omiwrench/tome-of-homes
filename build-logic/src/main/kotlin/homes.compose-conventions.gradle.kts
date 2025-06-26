@@ -5,13 +5,6 @@ plugins {
     id("org.jetbrains.kotlin.plugin.compose")
 }
 
-//TODO needed?
-//android {
-//    buildFeatures {
-//        compose = true
-//    }
-//}
-
 tasks.withType<KotlinCompile> {
     compilerOptions {
         freeCompilerArgs.addAll(listOf(
