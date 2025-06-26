@@ -22,7 +22,7 @@ kotlinx-serialization = "1.8.1"
 ktor = "3.2.0"
 timber = "5.0.1"
 molecule = "2.1.0"
-coil = "2.7.0"
+coil = "3.2.0"
 
 
 [libraries]
@@ -72,8 +72,12 @@ molecule-runtime = { group = "app.cash.molecule", name = "molecule-runtime", ver
 google-ksp-gradle = { group = "com.google.devtools.ksp", name = "com.google.devtools.ksp.gradle.plugin", version.ref = "ksp" }
 
 timber = { group = "com.jakewharton.timber", name = "timber", version.ref = "timber" }
-coil = { group = "io.coil-kt", name = "coil-compose", version.ref = "coil" }
+coil = { group = "io.coil-kt.coil3", name = "coil-compose", version.ref = "coil" }
+coil-network = { group = "io.coil-kt.coil3", name = "coil-network-ktor3", version.ref = "coil" }
 
+
+[bundles]
+coil = ["coil", "coil-network", "ktor-client-android"]
 
 [plugins]
 android-application = { id = "com.android.application", version.ref = "androidGradlePlugin" }

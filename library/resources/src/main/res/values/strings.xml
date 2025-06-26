@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="listings_property_locationSubtitle_format">%s, %s</string>
+    <string name="listings_property_livingArea_format">%d m²</string>
+    <string name="listings_property_rooms_format">%d rooms</string>
+    <string name="listings_property_days_format">%d days</string>
+    <string name="listings_area_averagePrice_format">Avg. price: %s</string>
+    <string name="listings_area_rating_format">Rated %s</string>
+
+    <string name="listings_property_highlighted_pill">Tips!</string>
+</resources>

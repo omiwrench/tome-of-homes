@@ -38,6 +38,7 @@ dependencies {
     implementation(libs.dagger.hilt)
 
     implementation(libs.androidx.navigation.compose)
+    implementation(libs.timber)
 
     coreLibraryDesugaring(libs.android.desugar)
 }

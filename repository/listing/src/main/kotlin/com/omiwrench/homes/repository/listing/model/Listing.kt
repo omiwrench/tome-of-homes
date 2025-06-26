@@ -2,9 +2,14 @@ package com.omiwrench.homes.repository.listing.model
 
 import java.net.URL
 
-sealed class Listing(open val id: String) {
+sealed class Listing(
+    open val id: String,
+    open val image: URL,
+    val title: String
+) {
     data class Property(
         override val id: String,
+        override val image: URL,
         val type: Type,
         val askingPrice: String,
         val monthlyFee: String,
@@ -14,8 +19,11 @@ sealed class Listing(open val id: String) {
         val livingArea: Int,
         val numberOfRooms: Int,
         val streetAddress: String,
-        val image: URL,
-    ): Listing(id = id) {
+    ): Listing(
+        id = id,
+        image = image,
+        title = streetAddress
+    ) {
         enum class Type {
             Standard,
             Highlighted
@@ -24,9 +32,13 @@ sealed class Listing(open val id: String) {
 
     data class Area(
         override val id: String,
+        override val image: URL,
         val area: String,
         val rating: String,
         val averagePrice: String,
-        val image: URL,
-    ): Listing(id = id)
+    ): Listing(
+        id = id,
+        image = image,
+        title = area
+    )
 }

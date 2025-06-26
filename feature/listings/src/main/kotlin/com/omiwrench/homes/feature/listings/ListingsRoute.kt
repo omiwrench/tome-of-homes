@@ -20,12 +20,14 @@ fun ListingsRoute(
         creationCallback = { factory: ListingsViewModel.Factory ->
             factory.create(savedStateRegistry = savedStateRegistry)
         }
-    )
+    ),
+    onListingClick: (id: String) -> Unit
 ) {
     val uiState by viewModel.uiState.collectAsStateWithLifecycle()
 
     ListingsScreen(
-        state = rememberScreenState(uiState)
+        state = rememberScreenState(uiState),
+        onListingClick = { onListingClick(it.id) }
     )
 }
 
@@ -57,7 +59,8 @@ internal fun Listing.asListingItem() = when(this) {
             id = id,
             image = image,
             streetAddress = streetAddress,
-            generalLocation = "${this.area}, ${this.municipality}",
+            area = area,
+            municipality = municipality,
             askingPrice = askingPrice,
             livingArea = livingArea,
             numberOfRooms = numberOfRooms,
@@ -79,7 +82,8 @@ internal data class ScreenState(
                     id = "1",
                     image = URL("https://upload.wikimedia.org/wikipedia/commons/8/8f/Arkitekt_Peder_Magnussen_hus_H%C3%B8nefoss_HDR.jpg"),
                     streetAddress = "Vägvägen 123",
-                    generalLocation = "Vägholma, Stockholm",
+                    area = "Vägholma",
+                    municipality = "Stockholm",
                     askingPrice = "5 000 000 kr",
                     livingArea = 80,
                     numberOfRooms = 5,
@@ -90,7 +94,8 @@ internal data class ScreenState(
                     id = "2",
                     image = URL("https://upload.wikimedia.org/wikipedia/commons/8/8f/Arkitekt_Peder_Magnussen_hus_H%C3%B8nefoss_HDR.jpg"),
                     streetAddress = "Vägvägen 1234",
-                    generalLocation = "Vägholma, Stockholm",
+                    area = "Vägholma",
+                    municipality = "Stockholm",
                     askingPrice = "10 000 000 kr",
                     livingArea = 160,
                     numberOfRooms = 10,

@@ -48,19 +48,21 @@ class ListingsViewModel @AssistedInject constructor(
 
 sealed class ListingItem(
     open val id: String,
-    open val image: URL
+    open val image: URL,
+    val title: String,
 ) {
     data class Property(
         override val id: String,
         override val image: URL,
         val streetAddress: String,
-        val generalLocation: String,
+        val area: String,
+        val municipality: String,
         val askingPrice: String,
         val livingArea: Int,
         val numberOfRooms: Int,
         val daysOnMarket: Int,
         val isHighlighted: Boolean = false
-    ) : ListingItem(id, image)
+    ) : ListingItem(id, image, streetAddress)
 
     data class Area(
         override val id: String,
@@ -68,5 +70,5 @@ sealed class ListingItem(
         val area: String,
         val rating: String,
         val averagePrice: String
-    ) : ListingItem(id, image)
+    ) : ListingItem(id, image, area)
 }

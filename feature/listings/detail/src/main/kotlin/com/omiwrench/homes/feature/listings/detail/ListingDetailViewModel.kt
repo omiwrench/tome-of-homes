@@ -9,10 +9,11 @@ import com.omiwrench.homes.repository.listing.ListingRepository
 import com.omiwrench.homes.repository.listing.model.Listing
 import dagger.assisted.Assisted
 import dagger.assisted.AssistedFactory
+import dagger.assisted.AssistedInject
 import dagger.hilt.android.lifecycle.HiltViewModel
 
 @HiltViewModel(assistedFactory = ListingDetailViewModel.Factory::class)
-class ListingDetailViewModel(
+class ListingDetailViewModel @AssistedInject constructor(
     @Assisted savedStateRegistry: SavedStateRegistry,
     @Assisted private val listingId: String,
     private val listingRepository: ListingRepository

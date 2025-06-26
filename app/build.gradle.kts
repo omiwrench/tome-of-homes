@@ -37,4 +37,5 @@ dependencies {
     implementation(projects.library.resources)
 
     implementation(projects.feature.listings)
+    implementation(projects.feature.listings.detail)
 }
