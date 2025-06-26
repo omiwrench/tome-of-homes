@@ -34,11 +34,15 @@ class ListingDetailViewModel @AssistedInject constructor(
         }
 
         return UiState(
-            listing = listing?.getOrNull()
+            listing = listing?.getOrNull(),
+            isLoading = listing == null,
+            hasFailure = listing?.isFailure == true
         )
     }
 
     data class UiState(
-        val listing: Listing?
+        val listing: Listing?,
+        val isLoading: Boolean,
+        val hasFailure: Boolean
     )
 }

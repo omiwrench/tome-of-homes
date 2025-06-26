@@ -38,8 +38,8 @@ private fun rememberScreenState(
         ScreenState(
             image = listing?.image,
             title = listing?.title,
-            isLoading = false,
-            hasFailure = false
+            isLoading = isLoading,
+            hasFailure = hasFailure
         )
     }
 }

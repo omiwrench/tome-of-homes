@@ -32,17 +32,15 @@ class ListingsViewModel @AssistedInject constructor(
 
         return UiState(
             listings = listings?.getOrNull(),
-            isLoading = false,
-            isRefreshing = false,
-            hasError = listings?.isFailure == true
+            isLoading = listings == null,
+            hasFailure = listings?.isFailure == true
         )
     }
 
     data class UiState(
         val listings: List<Listing>?,
         val isLoading: Boolean = false,
-        val isRefreshing: Boolean = false,
-        val hasError: Boolean = false
+        val hasFailure: Boolean = false
     )
 }
 

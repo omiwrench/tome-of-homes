@@ -15,11 +15,16 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.outlined.ErrorOutline
+import androidx.compose.material3.CircularProgressIndicator
+import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.OutlinedCard
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
@@ -39,20 +44,40 @@ internal fun ListingsScreen(
     onListingClick: (ListingItem) -> Unit
 ) {
     Scaffold { contentPadding ->
-        LazyColumn(
-            modifier = Modifier.padding(contentPadding),
-            verticalArrangement = Arrangement.spacedBy(12.dp),
-            contentPadding = PaddingValues(16.dp)
-        ) {
-            items(state.listings) {
-                ListingContainer(
-                    title = it.title,
-                    imageUrl = it.image,
-                    isHighlighted = (it as? ListingItem.Property)?.isHighlighted == true,
-                    footer = { it.Footer() },
-                    imageDecoration = { it.ImageDecoration() },
-                    onClick = { onListingClick(it) }
-                )
+        when {
+            state.isLoading -> {
+                Box(modifier = Modifier.fillMaxSize(), contentAlignment = Alignment.Center) {
+                    CircularProgressIndicator()
+                }
+            }
+
+            state.hasFailure -> {
+                Box(modifier = Modifier.fillMaxSize(), contentAlignment = Alignment.Center) {
+                    Icon(
+                        Icons.Outlined.ErrorOutline,
+                        contentDescription = "Error",
+                        tint = Color.Red
+                    )
+                }
+            }
+
+            else -> {
+                LazyColumn(
+                    modifier = Modifier.padding(contentPadding),
+                    verticalArrangement = Arrangement.spacedBy(12.dp),
+                    contentPadding = PaddingValues(16.dp)
+                ) {
+                    items(state.listings) {
+                        ListingContainer(
+                            title = it.title,
+                            imageUrl = it.image,
+                            isHighlighted = (it as? ListingItem.Property)?.isHighlighted == true,
+                            footer = { it.Footer() },
+                            imageDecoration = { it.ImageDecoration() },
+                            onClick = { onListingClick(it) }
+                        )
+                    }
+                }
             }
         }
     }

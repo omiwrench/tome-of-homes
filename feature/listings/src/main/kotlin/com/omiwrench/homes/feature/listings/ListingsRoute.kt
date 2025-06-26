@@ -40,7 +40,7 @@ private fun rememberScreenState(
             it.asListingItem()
         },
         isLoading = uiState.isLoading,
-        isRefreshing = uiState.isRefreshing
+        hasFailure = uiState.hasFailure
     )
 }
 
@@ -73,7 +73,7 @@ internal fun Listing.asListingItem() = when(this) {
 internal data class ScreenState(
     val listings: List<ListingItem>,
     val isLoading: Boolean,
-    val isRefreshing: Boolean
+    val hasFailure: Boolean
 ) {
     companion object {
         fun preview() = ScreenState(
@@ -111,7 +111,7 @@ internal data class ScreenState(
                 )
             ),
             isLoading = false,
-            isRefreshing = false
+            hasFailure = false
         )
     }
 }
